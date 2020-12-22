@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import Input, Model
-from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.layers import LSTM, Dense, Bidirectional
 from tensorflow.keras.losses import MeanSquaredError
 from tensorflow.keras.optimizers import Adam
 
@@ -27,8 +27,11 @@ if __name__ == '__main__':
     optimizers = Adam(learning_rate=LR)
 
     xInput = Input(batch_shape=(None, nStep, nInput))
-    xLstm = LSTM(nHidden)(xInput)
-    xOutput = Dense(nOutput)(xLstm)
+
+    xLstm = LSTM(units=nHidden)(xInput)
+    #xLstm = Bidirectional(LSTM(units=nHidden))(xInput)
+
+    xOutput = Dense(units=nOutput)(xLstm)
     model = Model(xInput, xOutput)
 
     #model.summary()
