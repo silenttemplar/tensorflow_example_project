@@ -106,7 +106,7 @@ class LeNet4(Model):
         return x
 
 class LeNet5(Model):
-    def __init__(self):
+    def __init__(self, activation):
         super(LeNet5, self).__init__()
 
         # feature extractor
