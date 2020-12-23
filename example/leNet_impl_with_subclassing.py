@@ -77,8 +77,6 @@ class LeNet4(Model):
         super(LeNet4, self).__init__()
 
         # feature extractor
-        self.zero_padding = ZeroPadding2D(padding=2)
-
         self.fe = FeatureExtrator(4, 16)
         '''
         self.conv1 = Conv2D(filters=4, kernel_size=5, padding='valid', strides=1, activation='tanh')
@@ -93,8 +91,6 @@ class LeNet4(Model):
         self.d2 = Dense(units=10, activation='softmax')
 
     def call(self, x):
-        x = self.zero_padding(x)
-
         x = self.fe(x)
         '''
         x = self.conv1(x)
@@ -114,8 +110,6 @@ class LeNet5(Model):
         super(LeNet5, self).__init__()
 
         # feature extractor
-        self.zero_padding = ZeroPadding2D(padding=2)
-
         self.fe = FeatureExtrator(6, 16)
         '''
         self.conv1 = Conv2D(filters=6, kernel_size=5, padding='valid', strides=1, activation='tanh')
@@ -131,8 +125,6 @@ class LeNet5(Model):
         self.d3 = Dense(units=10, activation='softmax')
 
     def call(self, x):
-        x = self.zero_padding(x)
-
         x = self.fe(x)
         '''
         x = self.conv1(x)
