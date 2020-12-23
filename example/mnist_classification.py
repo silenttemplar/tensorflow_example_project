@@ -1,5 +1,3 @@
-import numpy as np
-import matplotlib.pyplot as plt
 from termcolor import colored
 
 import tensorflow as tf
@@ -41,9 +39,9 @@ def get_mnist_ds():
 def normalization(TRAIN_BATCH_SIZE, TEST_BATCH_SIZE):
     global train_ds, validation_ds, test_ds
 
-    def stnd(images, lables):
+    def stnd(images, labels):
         images = tf.cast(images, tf.float32) / 255.
-        return [images, lables]
+        return [images, labels]
 
     train_ds = train_ds.map(stnd).shuffle(1000).batch(TRAIN_BATCH_SIZE)
     validation_ds = validation_ds.map(stnd).batch(TEST_BATCH_SIZE)
