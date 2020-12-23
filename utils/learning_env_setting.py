@@ -1,10 +1,55 @@
 import os
 import shutil
 from termcolor import colored
-import tensorflow as tf
 import numpy as np
+import argparse
 
+import tensorflow as tf
 from tensorflow.keras.metrics import Mean, SparseCategoricalAccuracy
+
+def argparser(epochs, learning_rate, train_batch_size):
+    print('[argparser]', 'received parameter',
+          'epochs: {}, learning_rate:{}, training_batch_size: {}'.format(epochs, learning_rate, train_batch_size))
+
+    parser = argparse.ArgumentParser(description='hyper parameters for training')
+    parser.add_argument('-e', type=int, default=None,
+                        help='an integer for epochs')
+    parser.add_argument('-l', type=float, default=None,
+                        help='an floating point for learning rate')
+    parser.add_argument('-b', type=int, default=None,
+                        help='an integer for batch size')
+    parser.add_argument('-a', type=str, default=None,
+                        help='an string for activation function')
+    parser.add_argument('-c', type=int, default=None,
+                        help='an integer for experiment count')
+    arg = parser.parse_args()
+
+    if arg.e == None:
+        epochs = epochs
+    else:
+        epochs = arg.e
+
+    if arg.l == None:
+        learning_rate = learning_rate
+    else:
+        learning_rate = arg.l
+
+    if arg.b == None:
+        train_batch_size = train_batch_size
+    else:
+        train_batch_size = arg.b
+
+    if arg.a == None:
+        activation = 'relu'
+    else:
+        activation = arg.a
+
+    if arg.c == None:
+        exp_idx = 0
+    else:
+        exp_idx = arg.c
+
+    return exp_idx, epochs, learning_rate, train_batch_size, activation
 
 def dir_setting(dir_name, CONTINUE_LEARNING):
     print('[dir_setting]',
