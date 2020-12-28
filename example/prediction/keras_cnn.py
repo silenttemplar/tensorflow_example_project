@@ -1,11 +1,10 @@
 import numpy as np
-import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense
 from tensorflow.keras.losses import MeanSquaredError
 from tensorflow.keras.optimizers import Adam
 
-from prediction.keras_ann import create_train_data, result_visualization
+from example.prediction.keras_ann import create_train_data, result_visualization
 
 if __name__ == '__main__':
     # time series data (with noisy)

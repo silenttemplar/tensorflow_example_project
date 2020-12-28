@@ -1,11 +1,10 @@
 import numpy as np
-import tensorflow as tf
 from tensorflow.keras import Input, Model
-from tensorflow.keras.layers import LSTM, Dense, Bidirectional
+from tensorflow.keras.layers import GRU, Dense
 from tensorflow.keras.losses import MeanSquaredError
 from tensorflow.keras.optimizers import Adam
 
-from prediction.keras_ann import create_train_data, result_visualization
+from example.prediction.keras_ann import create_train_data, result_visualization
 
 if __name__ == '__main__':
     # time series data (with noisy)
@@ -27,15 +26,12 @@ if __name__ == '__main__':
     optimizers = Adam(learning_rate=LR)
 
     xInput = Input(batch_shape=(None, nStep, nInput))
-
-    xLstm = LSTM(units=nHidden)(xInput)
-    #xLstm = Bidirectional(LSTM(units=nHidden))(xInput)
-
+    xLstm = GRU(units=nHidden)(xInput)
     xOutput = Dense(units=nOutput)(xLstm)
     model = Model(xInput, xOutput)
 
-    #model.summary()
     model.compile(loss=loss_object, optimizer=optimizers)
+    #model.summary()
 
     # training
     EPOCHS = 100
