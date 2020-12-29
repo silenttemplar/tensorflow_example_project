@@ -12,6 +12,9 @@ prediction 예제소스
 ### example/anomaly/
 anomaly detection 예제소스
 
+## example/visualization/
+python matplotlib 강의 예제 소스
+
 ### utils/
 공통유틸에 관련된 소스
 
