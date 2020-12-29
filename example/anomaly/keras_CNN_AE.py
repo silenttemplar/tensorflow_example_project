@@ -52,6 +52,8 @@ def prepare_input_data():
     return training_value, test_value
 
 def get_model():
+    global x_train
+
     model = keras.Sequential(
         [
             layers.Input(shape=(x_train.shape[1], x_train.shape[2])),
